@@ -3,7 +3,7 @@ import imp
 from math import sqrt
 def euclidean_distance(vector1,vector2):
     distance=0
-    for i in range(0,len(vector1)):
+    for i in range(0,len(vector1)-1):
        distance += (vector1[i]-vector2[i])**2
     distance=sqrt(distance)
     return distance
@@ -30,6 +30,13 @@ def get_neighbors(train, test_row, num_neighbors):
 
     return neighbors
 
+
+def predictions(train, test_row, num_neighbors):
+    neighbors=get_neighbors(train, test_row, num_neighbors)
+    output_vals=[row[-1] for row in neighbors]
+    prediction=max(set(output_vals),key=output_vals.count)
+    return prediction
+
 vec1=[1,2]
 vec2=[1,3]
 dataset = [[2.7810836,2.550537003,0],
@@ -42,10 +49,12 @@ dataset = [[2.7810836,2.550537003,0],
 	[6.922596716,1.77106367,1],
 	[8.675418651,-0.242068655,1],
 	[7.673756466,3.508563011,1]]
+prediction = predictions(dataset, dataset[0], 3)
+print('Expected %d, Got %d.' % (dataset[0][-1], prediction))
 
-neighbors = get_neighbors(dataset, dataset[0], 3)
-for neighbor in neighbors:
-	print(neighbor)
+# neighbors = get_neighbors(dataset, dataset[0], 3)
+# for neighbor in neighbors:
+# 	print(neighbor)
 # row0=dataset[0]
 # for row in dataset:
 #     print(euclidean_distance(row0,row))
