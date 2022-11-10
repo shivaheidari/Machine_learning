@@ -1,0 +1,1 @@
+# how to detect the proper learning rate
