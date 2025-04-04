@@ -32,7 +32,6 @@ class LogisticRegression:
                 x_batch = x_shuffled[i:i+self.batch_size]
                 y_batch = y_shuffled[i:i+self.batch_size]
 
-                #pred = sig(xw+b)
                 linear_pred = x_batch @ self.weights + self.bias
                 y_pred = self._sig(linear_pred)
 
@@ -45,8 +44,9 @@ class LogisticRegression:
                 self.bias -= self.lr * db
 
 
-        pass
+    
     def predict_prob(self, x):
+
         linear_pred = x @ self.weights + self.bias
         return self._sig(linear_pred)
     
