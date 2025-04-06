@@ -14,6 +14,16 @@ class DecisionTree:
         probs = counts / len(y)
         return 1 - sum (probs ** 2)
     
+    def _entropy(self, y):
+        classes , counts = np.unique(y, return_counts=True)
+        probs = counts / len(y)
+        entropy = np.sum(-(probs)*np.log2(probs))
+        return entropy
+    def info_gain(self, y, y_left, y_right):
+        p_left = float(len(y_left)) / len(y)
+        gain = self._entropy(y)- p_left * self._entropy(y_left) + (1-p) * self._entropy(y_right)
+        return gain
+    
     def show(self):
         return self.tree
     
@@ -83,9 +93,10 @@ y = np.array([0, 0, 0, 1, 1, 1])
 
 # Train
 tree = DecisionTree(max_depth=2)
-tree.fit(X, y)
+print(tree._gini(y))
+# tree.fit(X, y)
 
-# Predict
-print(tree.predict(np.array([[4, 4], [1, 1]]))) 
+# # Predict
+# print(tree.predict(np.array([[4, 4], [1, 1]]))) 
 
-print(tree.show())
+# print(tree.show())
