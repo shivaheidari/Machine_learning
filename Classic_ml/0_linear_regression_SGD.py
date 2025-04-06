@@ -17,7 +17,7 @@ class LinearRegression:
         self.bias = 0
         self.loss_history = []
         #select a batch
-        for epoch in range(self.epochs):
+        for _ in range(self.epochs):
             indeces = np.random.permutation(n_samples)
             x_shuffled = x[indeces]
             y_shuffled = y[indeces]
@@ -34,8 +34,6 @@ class LinearRegression:
                 self.weights -= self.lr * dw
                 self.bias -= self.lr * db
 
-                # epoch_loss = self._mse(y, self.predict(x))
-                # self.loss_history.append(epoch_loss)
                 
         
     

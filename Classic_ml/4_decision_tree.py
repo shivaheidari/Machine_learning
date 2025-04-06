@@ -14,7 +14,9 @@ class DecisionTree:
         probs = counts / len(y)
         return 1 - sum (probs ** 2)
     
-
+    def show(self):
+        return self.tree
+    
     def _best_split(self, x, y):
         best_gini = 1
         best_feature, best_threshold = None, None
@@ -85,3 +87,5 @@ tree.fit(X, y)
 
 # Predict
 print(tree.predict(np.array([[4, 4], [1, 1]]))) 
+
+print(tree.show())
