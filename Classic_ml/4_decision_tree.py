@@ -19,11 +19,13 @@ class DecisionTree:
         probs = counts / len(y)
         entropy = np.sum(-(probs)*np.log2(probs))
         return entropy
+    
     def info_gain(self, y, y_left, y_right):
         p_left = float(len(y_left)) / len(y)
         gain = self._entropy(y)- p_left * self._entropy(y_left) + (1-p) * self._entropy(y_right)
         return gain
-    
+
+        
     def show(self):
         return self.tree
     
