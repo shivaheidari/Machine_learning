@@ -1,4 +1,5 @@
 import numpy as np
+from sklearn.tree import DecisionTreeClassifier
 """
  simulate 1–2 rounds of AdaBoost using a stump class like:
 
@@ -19,16 +20,36 @@ def adaboost_predict(classifiers, alphas, X):
 
 """
 
+
 def adaboost_predict(cassifiers, alphas, X):
 
     pass
 
-def bagging(x, limit):
+def bagging(x, y, n_estimatiors, sample_size=None ):
     #sampling with replacement
-    return np.random.choice(x, size=limit, replace=True)
+    models = []
+    n_samples = x.shape[0]
+    for _ in range(n_estimatiors):
+        indeces = np.random.choice(n_samples, sample_size, replace=True)
+        x_subsample = x[indeces]
+        y_subsample = y[indeces]
+
+        model = DecisionTreeClassifier()
+        model.fit(x_subsample, y_subsample)
+        models.append(model)
+        
     
 
+    return models
 
-x = np.random.rand(30)
-y = bagging(x, limit=10)
-print(x,y)
+x = np.random.randint(0,40, 20).reshape(-1,1)
+y = np.random.randint(0,1,20)
+models = bagging(x,y, 3, 10)
+test_data = np.random.randint(0,40,3).reshape(-1,1)
+test_data = [[10],[20],[30]]
+for model in models:
+    for data in test_data:
+        data = np.array(data).reshape(-1,1)
+        estimate = model.predict(data)
+        print(estimate)
+
