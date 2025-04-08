@@ -1,5 +1,6 @@
 import numpy as np 
 
+import matplotlib.pylab as plt
 
 class kmeans:
     def __init__(self,num_clusters=None, max_itr = 20):
@@ -55,7 +56,12 @@ class kmeans:
 
 
 x = np.vstack([np.random.normal((0,0), 0.3, (50, 2)), np.random.normal((5,5), 0.4, (30,2)), np.random.normal((10,10), 0.6, (40, 2))])
-print(x)
 model = kmeans(3, max_itr=10)
 model.fit(x)
-model.predict(x)
+labels = model.labels
+centroids = model.centroids
+
+plt.scatter(x[:, 0], x[:, 1], c=labels, cmap='viridis', alpha=0.5)
+plt.scatter(centroids[:, 0], centroids[:, 1], c='red', marker='x', s=100)
+plt.title("K-Means Clustering")
+plt.show()
