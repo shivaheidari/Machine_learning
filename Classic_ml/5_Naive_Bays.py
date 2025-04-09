@@ -20,13 +20,6 @@ class GaussianNaiveBayes:
              self.var[c] = np.var(x_c, axis=0)
              self.priors[c] = x_c.shape[0] / samples
              
-
-
-        
-
-             
-        
-
        
     def _calculate_likelihood(self, x, mean, var):
         """Gaussian PDF to calculate likelihood"""

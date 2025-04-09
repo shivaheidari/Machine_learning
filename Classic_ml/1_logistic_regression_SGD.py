@@ -44,7 +44,6 @@ class LogisticRegression:
                 self.bias -= self.lr * db
 
 
-    
     def predict_prob(self, x):
 
         linear_pred = x @ self.weights + self.bias

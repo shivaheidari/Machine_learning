@@ -6,7 +6,7 @@ need kernel
 finding margines in soft or hard in maximizing the support vectors distance
 predict: distance to the hyperplane
 need regulaization?
-j(theta)?
+j(theta)
 
 """
 class SVM:

@@ -72,4 +72,38 @@ print(a_norm)
 
 #top3 largest 
 arr = np.array([[1, 5, 3], [10, 2, 8]])
-print(np.sort(arr, axis=1))
+top3 = np.sort(arr, axis=1)[:, -3:]
+
+df = pd.DataFrame({
+    'Date': ['2023-01-01', '2023-01-01', '2023-01-02'],
+    'Variable': ['A', 'B', 'A'],
+    'Value': [10, 20, 30]
+})
+
+df_pivot = df.pivot(index="Date", columns="Variable", values="Value")
+print(df_pivot)
+
+#outlier handeling 
+df = pd.DataFrame({'Price': [100, 200, 1000, 150]})
+print("outliers")
+df = pd.DataFrame({'Price': [100, 200, 1000, 150]})
+cap = df['Price'].quantile(0.8)
+print(cap)
+df['Price'] = np.where(df['Price'] > cap, cap, df['Price'])
+print(df["Price"])
+
+df = pd.DataFrame({
+    'login_time': pd.to_datetime(['2023-01-01 10:00', '2023-01-01 11:00', '2023-01-02 09:00'])
+})
+#number of logins per day
+logins_per_day = df['login_time'].dt.date.value_counts()
+print(logins_per_day)
+
+#values in ‘Age’ with the median of ‘Gender’ groups
+df = pd.DataFrame({'Gender': ['F', 'F', 'M'], 'Age': [25, np.nan, 30]})
+# df = df["Age"].fillna(np.mean(df["Age"]))
+# print(df)
+df['Age'] = df.groupby('Gender')['Age'].transform("max")
+print(df["Age"])
+
+

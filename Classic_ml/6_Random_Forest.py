@@ -74,5 +74,3 @@ print(counts)
 x = [20,2,3]
 y = [2,1,4]
 zipped = zip(x, y)
-for x, y in zipped:
-    print(x,y)

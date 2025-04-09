@@ -100,5 +100,4 @@ print(tree._gini(y))
 
 # # Predict
 # print(tree.predict(np.array([[4, 4], [1, 1]]))) 
-
 # print(tree.show())
