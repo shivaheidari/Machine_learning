@@ -20,6 +20,7 @@ class SVM:
 
     def _hinge_loss(self, x, y):
         #loss
+        #margine violation per sample
         distances = 1 - y * (x @ self.weights + self.bias)
         distances[distances < 0] = 0
         loss = (1/2)*np.dot(self.weights, self.weights) + self.C * (np.sum(distances))
