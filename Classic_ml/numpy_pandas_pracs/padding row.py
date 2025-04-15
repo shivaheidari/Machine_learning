@@ -10,16 +10,31 @@ Then convert it to a Pandas DataFrame and fill missing values with the column me
 
 def padding(arr):
 
-    #get max lenght of arr 
+    
 
-    max_len = lambda a: max(map(len, a))
-    ""
-    max_data = max_len(arr)
+    max_len = max(len(row) for row in arr) 
+    
+    """for i, item in enumerate(arr):
+        if len(item) < max_d:
+            subarr = np.zeros(max_d)
+            for j, element in enumerate(item):
+                subarr[j] = element
+            arr[i] = subarr
+    """
 
-    #for each item check the lenght and extend if needed 
-    #fill with zero
-    #convert to df adn fill with zeros with median
-    return max_data
+    padded_arr = [
+        np.pad(row, (0, max_len - len(row)), 'constant') 
+        for row in arr
+    ]
+
+    df = pd.DataFrame(padded_arr)
+    df = df.replace(0, df.median())
+    
+    # for col in df.columns:
+    #     fill = df[col].median()
+    #     df[df[col] == 0] = fill
+    
+    return df
 
 arr = [np.array([1, 2]), np.array([3, 4, 5]), np.array([6])]
 print(padding(arr))
