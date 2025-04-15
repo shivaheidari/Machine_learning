@@ -43,18 +43,6 @@ class kmeans:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 x = np.vstack([np.random.normal((0,0), 0.3, (50, 2)), np.random.normal((5,5), 0.4, (30,2)), np.random.normal((10,10), 0.6, (40, 2))])
 model = kmeans(3, max_itr=10)
 model.fit(x)

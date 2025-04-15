@@ -81,7 +81,7 @@ df = pd.DataFrame({
 })
 
 df_pivot = df.pivot(index="Date", columns="Variable", values="Value")
-print(df_pivot)
+print("pivot", df_pivot)
 
 #outlier handeling 
 df = pd.DataFrame({'Price': [100, 200, 1000, 150]})
